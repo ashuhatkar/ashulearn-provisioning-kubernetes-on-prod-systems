@@ -104,6 +104,7 @@ kops get instancegroups --name demok8scluster.k8s.local
 
 ```sh
 # kops edit instancegroup --name <CLUSTER_NAME> <INSTANCE_GROUP_NAME> <STATE_STORE>
+kops edit ig --name <ig-name>
 kops edit instancegroup --name demok8scluster.k8s.local <master_instance_group>
 ```
 
@@ -112,6 +113,7 @@ kops edit instancegroup --name demok8scluster.k8s.local <master_instance_group>
 ## Update the cluster
 
 ```sh
+kops update cluster --name ${KOPS_CLUSTER_NAME} --state ${KOPS_STATE_STORE} --yes --admin
 kops update cluster --name demok8scluster.k8s.local --yes
 ```
 
@@ -119,6 +121,12 @@ kops update cluster --name demok8scluster.k8s.local --yes
 
 ```sh
 kops validate cluster --name demok8scluster.k8s.local
+```
+
+## Delete cluster
+
+```sh
+kops delete instancegroup demok8scluster.k8s.local --name ${KOPS_CLUSTER_NAME} --yes
 ```
 
 ## List available nodes
